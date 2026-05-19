@@ -1,0 +1,51 @@
+# Dengue NS5 Dimer + Antisense RNA — ChimeraX Visualization Script
+# File > Open > visualize_ns5.cxc
+
+open /Users/smyan/Desktop/dengue_sim/dengue_NS5_antisense.pdb
+
+# ── Clean up ──────────────────────────────────────────────────────────────────
+~display H
+hide solvent
+
+# ── Ribbon for protein, sticks for RNA ───────────────────────────────────────
+cartoon
+~display ~protein & ~nucleic & ~ions
+
+# ── Color monomers ────────────────────────────────────────────────────────────
+color /A #4895EF
+color /B #E07070
+
+# ── RNA (nucleotides 1-21, chain A) ──────────────────────────────────────────
+display /A & nucleic
+style /A & nucleic stick
+color /A & nucleic #FFD700
+
+# ── GDD catalytic triad — red sticks ─────────────────────────────────────────
+display /A:662-664
+display /B:662-664
+style /A:662-664 stick
+style /B:662-664 stick
+color /A:662-664 #FF1C1C
+color /B:662-664 #FF1C1C
+
+# ── Zinc ions ─────────────────────────────────────────────────────────────────
+display :ZN
+style :ZN sphere
+color :ZN #50C878
+
+# ── SAH cofactor ──────────────────────────────────────────────────────────────
+display :SAH
+style :SAH stick
+color :SAH #FF8C00
+
+# ── Lighting & background ─────────────────────────────────────────────────────
+lighting soft
+set bgColor white
+graphics silhouettes true
+
+# ── Labels ───────────────────────────────────────────────────────────────────
+label /A:663 text "GDD" color #CC0000 size 16
+label /A:1 text "Antisense RNA" color #B8860B size 16
+
+# ── Fit in window ─────────────────────────────────────────────────────────────
+view
